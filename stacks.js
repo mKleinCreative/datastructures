@@ -33,3 +33,7 @@ console.log('my menu', myWeeklyMenu)
 myWeeklyMenu.pop()
 console.log('my menu minus', myWeeklyMenu)
 myWeeklyMenu.size()
+
+() => {
+
+}
