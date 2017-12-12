@@ -10,6 +10,7 @@ function computeFactorial(num) {
 }
 
 computeFactorial(9)
+computeFactorial(20)
 computeFactorial(3)
 computeFactorial(6)
 computeFactorial(1)

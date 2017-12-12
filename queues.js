@@ -45,3 +45,5 @@ Queue.prototype.until = function(value) {
   }
   return null;
 }
+
+module.exports = Queue
