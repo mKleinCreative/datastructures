@@ -51,13 +51,4 @@ function towerBuilderTheSmartWay(n) {
   });
 }
 
-
-
-const result = [
-  '     *     ',
-  '    ***    ',
-  '   *****   ',
-  '  *******  ',
-  ' ********* ',
-  '***********'
-]
+console.log('smart way', towerBuilderTheSmartWay(5) )
