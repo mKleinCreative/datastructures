@@ -34,16 +34,13 @@ function comp(array1 = null, array2 = null) {
   console.log('array2', array2, array1)
   if (array1 !== null && array2 !== null) {
     let products = Array.from(array1, x => x * x)
-    console.log(array2.every(x => {
-      if (products.includes(x)) {
-        products.
-      })
-    })
+    console.log(array2.every(x => products.includes(x)))
+    return 
   }
   return false
 }
 
-let b1 = [2, 2, 3]
-let b2 = [4, 9, 9]
+let b1 = [4, 9, 9]
+let b2 = [2, 2, 3]
 
 comp(a1, a2);
