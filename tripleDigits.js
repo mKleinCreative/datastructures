@@ -1,7 +1,5 @@
 
-function tripledouble(num1, num2) {
-  let result1 = (/([0-9])\1{2,}/gi).test(num1)
-  let result2 = (/([0-9])\1{1,}/gi).test(num2)
+function tripledouble(num1, num2) {,
   console.log(num1, num2)
 
   let repeat1 = num1.toString().match(/([0-9])\1{2,}/gi)
