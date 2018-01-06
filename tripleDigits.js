@@ -1,5 +1,5 @@
 
-function tripledouble(num1, num2) {,
+function tripledouble(num1, num2) {
   console.log(num1, num2)
 
   let repeat1 = num1.toString().match(/([0-9])\1{2,}/gi)
@@ -17,6 +17,11 @@ function tripledouble(num1, num2) {,
       return 0
     }
   } return 0
+}
+
+
+function imafunction(arugments) {
+  
 }
 
 tripledouble(451999277, 41177722899)
