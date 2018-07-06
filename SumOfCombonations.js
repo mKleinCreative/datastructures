@@ -3,49 +3,61 @@
 //The length of the sub- arrays(such as [3, 3, 3, 3] should be less than or equal to the length of the initial array ([3, 6, 9, 12]).
 // Given an array of positive integers and a number n, count all combinations with repetition of integers that sum to n.For example:
 // find([3, 6, 9, 12], 12) = 5.
+//now has a final solution, spoilers ahead
 
-let sumArray = (arrayToAdd) => {
-  return arrayToAdd.reduce((runningTotal, addition) => {
-    return runningTotal + addition
-  }, 0)
+
+function total(array) {
+  return array.reduce((acc, value) => acc += value)
 }
 
-function find(arr, n) {
-  let hold = []
-  for (var outside = arr.length - 1; outside >= 0; outside--) {
-    let right = outside
-    for (var left = 0; left <= outside; left++) {
-      let temp = [arr[right]]
-      let element = arr[left];
-      if (arr[right] === n) {
-        right = right - 1
-      } else {
-        while ((sumArray(temp) < n) && (temp.length <= arr.length)) {
-          if ((sumArray(temp) + arr[right]) === n) {
-            temp.push(arr[right])
-            right = right - 1
-          } else if ((sumArray(temp) + arr[right]) < n) {
-            temp.push(arr[right])
-          } else if (sumArray(temp) + element !== n) {
-            temp.push(element)
-          } else {
-            temp.push(element)
-          }
-        }
+function containsArray(comparing, uniques) {
+  return !!uniques.find(unique => {
+    return comparing.reduce((acc, num, index) => {
+      if (acc === false) {
+        return false
       }
-      if ((sumArray(temp) === n) && (temp.length <= arr.length)) {
-        hold.push(temp)
-      }
-    }
-  }
-  console.log('hold (╯°□°)╯︵ ┻━┻ ', hold)
-  return console.log(hold.length)
-};
+      return num === unique[index]
+    }, true)
+  })
+}
 
-// console.log(find([1, 2, 3], 10) === 0)
-// console.log(find([1, 2, 3], 7) === 2)
-// console.log(find([1, 2, 3], 5) === 3)
-// console.log(find([3, 6, 9, 12], 12) === 5)
-// console.log(find([1, 4, 5, 8], 8) === 3)
-// console.log(find([3, 6, 9, 12], 15) === 5)
-// console.log(find([3, 6, 9, 12, 14, 18], 30) === 21)
+function solve(array, sum) {
+  const solutions = []
+  const possible = []
+  array.forEach(startingNumber => {
+    if (startingNumber < sum) {
+      possible.push([startingNumber])
+    } else if (startingNumber === sum) {
+      solutions.push([startingNumber])
+    }
+  })
+
+  while (possible.length) {
+    const current = possible.shift()
+    array.forEach(startingNumber => {
+      const newPath = current.concat([startingNumber])
+      newPath.sort()
+      if (total(newPath) < sum && !containsArray(newPath, possible)) {
+        possible.push(newPath)
+      } else if (total(newPath) === sum && !containsArray(newPath, solutions)) {
+        solutions.push(newPath)
+      }
+    })
+  }
+  console.log(solutions)
+  return solutions.length
+}
+
+// console.log("[1, 2, 3], 7 -> ", solve([1, 2, 3], 7))
+// console.log("[1, 2, 3], 5 -> ", solve([1, 2, 3], 5))
+// console.log("[3, 6, 9, 12], 12 -> ", solve([3, 6, 9, 12], 12))
+// console.log("[1, 4, 5, 8], 8 -> ", solve([1, 4, 5, 8], 8))
+// console.log("[3, 6, 9, 12], 15 -> ", solve([3, 6, 9, 12], 15))
+// console.log("[3, 6, 9, 12, 14, 18], 30 -> ", solve([3, 6, 9, 12, 14, 18], 30))
+console.log(solve([1, 2, 3], 10) === 0)
+console.log(solve([1, 2, 3], 7) === 2)
+console.log(solve([1, 2, 3], 5) === 3)
+console.log(solve([3, 6, 9, 12], 12) === 5)
+console.log(solve([1, 4, 5, 8], 8) === 3)
+console.log(solve([3, 6, 9, 12], 15) === 5)
+console.log(solve([3, 6, 9, 12, 14, 18], 30) === 21)

@@ -29,33 +29,36 @@ var parentChildPairs = [
 function findLessThanTwoParents(peopleArray) {
   let familyTree = {};
 
-  for(var i = 0; i < peopleArray.length; i++) {
-    let count = 0
+  for ( var i = 0; i < peopleArray.length; i++ ) {
     let parent = peopleArray[i][0]
     let child = peopleArray[i][1]
     if ( !familyTree[child] ) {
-       familyTree[child] = [ parent ]
+       familyTree[child] = [parent]
     } else {
       familyTree[child].push(parent) 
     }
   };
-  console.log("family Tree", familyTree)
+
+  console.log("family Tree", familyTree);
+
   let children = Object.keys(familyTree);
+  console.log('children (╯°□°)╯︵ ┻━┻ ', children)
   let parents = Object.values(familyTree);
-       
+  console.log('parents (╯°□°)╯︵ ┻━┻ ', parents)
+
   function diffArr(a, b) {
     return getUniqueValues(a, b).concat(getUniqueValues(b, a));
   };
-  
+
   let zeroParentArray = [];
   let oneParentArray = [];
-  
+
   for (var i = 0; i < parents.length; i++) {
     if ( !flattenedChildren.includes(parseInt(parents[i])) ) {
       zeroParentArray.push(parseInt(parents[i]))
     };
   };
-  
+
   oneParentArray = diffArr(repeatChildren, flattenedChildren);
 
   let result = `[\n [${zeroParentArray}], \n [${oneParentArray}] \n]`;

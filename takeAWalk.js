@@ -14,7 +14,7 @@ function isValidWalk(walk) {
   walk.forEach(function(direction) {
     directions[direction]++
   }, this);
-  if (directions.n === directions.s && directions.e === directions.w){
+  if (directions.n === directions.s && directions.e === directions.w) {
     return true
   } 
  return false
@@ -22,5 +22,5 @@ function isValidWalk(walk) {
 walk1 = ['n', 's', 'n', 's', 'n', 's', 'n', 's', 'n', 's']
 walk2 = ['n', 'n', 'n', 's', 'n', 's', 'n', 's', 'n', 's']
 
-isValidWalk(walk1)
-isValidWalk(walk2)
+console.log(isValidWalk(walk1))
+console.log(isValidWalk(walk2))
